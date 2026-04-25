@@ -1,0 +1,5 @@
+.gradio/
+__pycache__/
+*.pyc
+audio_prueba.mp3
+audio_prueba.wav
