@@ -74,7 +74,7 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
 # --- 4. LAUNCH (Modified for Render/Cloudflare) ---
 if __name__ == "__main__":
     # Render asigna un puerto dinámico en la variable de entorno PORT
-    port = int(os.environ.get("PORT", 7860))
+    port = int(os.environ.get("PORT", 10000))
     
     # server_name="0.0.0.0" es OBLIGATORIO para que el servicio sea visible externamente
     demo.launch(
