@@ -38,7 +38,7 @@ def process_audio_interface(audio_input):
         return f"An error occurred: {str(e)}"
 
 # --- 3. GRAPHICAL INTERFACE (Gradio 6.0+) ---
-with gr.Blocks() as demo:
+with gr.Blocks(theme=gr.themes.Soft()) as demo:
     gr.Markdown("# 🎙️ Professional AI Audio Transcriber")
     gr.Markdown("### Instantly convert speech to text using state-of-the-art Whisper AI.")
     
@@ -71,8 +71,14 @@ with gr.Blocks() as demo:
         outputs=output_text
     )
 
-# --- 4. LAUNCH ---
+# --- 4. LAUNCH (Modified for Render/Cloudflare) ---
 if __name__ == "__main__":
-    # Theme is applied here in Gradio 6.0
-    # Use share=True to generate a public link if running locally
-    demo.launch(theme=gr.themes.Soft(), share=True)
+    # Render asigna un puerto dinámico en la variable de entorno PORT
+    port = int(os.environ.get("PORT", 7860))
+    
+    # server_name="0.0.0.0" es OBLIGATORIO para que el servicio sea visible externamente
+    demo.launch(
+        server_name="0.0.0.0", 
+        server_port=port,
+        share=False  # En Render no necesitas share=True porque ya te dan una URL pública
+    )
